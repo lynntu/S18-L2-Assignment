@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script>
+      // javascript 語法
+      //設定圖片的初始狀態，初始為開燈
+      var state = true;
+      function toggleLight(){
+        var image = document.getElementById("image");
+        // 判斷圖片狀況，並切換圖片
+        state = !state;
+        // 切換狀態
+        image.src = state ? "img/on.jpg" : "img/off.jpg";
+        // 切換圖片
+      }
+
+      //寫按下countDown按鈕的function
+      function countDown(){
+        var timeLeft = document.getElementById("timer-num").value;
+        //判斷輸入是否為數字
+        if(isNaN(timeLeft)){
+          alert("請重新輸入數字！");
+        }
+        else {
+          document.getElementById("timer").innerHTML = parseInt(timeLeft);
+
+          function countDownTimer(){
+            // 每次執行把timeLeft遞減1
+            timeLeft = timeLeft - 1;
+            // 判斷倒數計時是否結束
+            if (timeLeft <= 0){
+              // 抽換成關燈的圖片
+              document.getElementById("image").src = "img/off.jpg";
+              // 取消interval設定
+              clearInterval(id);
+            }
+            // 更新倒數計時器的時間
+            document.getElementById("timer").innerHTML = timeLeft;
+          }
+          //設定Interval
+          var id = setInterval(countDownTimer,1000);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- html 語法寫在這 -->
+    <img id="image" img src="img/on.jpg" alt="lighton">
+    <button class="button" onclick="toggleLight();">ON<br>-<br>OFF</button>
+    <div id = "timer">
+    <!-- 新增一個輸入倒數時間的欄位 -->
+    <input id ="timer-num" type ="text">請輸入數字</input>
+    <!-- 新增一個驅動倒數計時的按鈕 -->
+    <button class="startButton" onclick="countDown();">Start</button>
+    </div>
+  </body>
+</html>

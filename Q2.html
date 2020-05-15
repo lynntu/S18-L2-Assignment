@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script>
+      function validate(){
+        var code = document.getElementById("number").value;
+        if (code == ""){
+          alert("內容是空的！請重新輸入！");
+        } else if (!isNaN(code)) {
+          alert("內容不可全部為數字！請重新輸入！");
+        } else if (code.length != 10) {
+          alert("內容長度不可以小於10！請重新輸入！");
+        } else {
+          //判斷是男是女
+          if (code[1] == "1"){
+            document.getElementById("result").innerHTML = "某男通過驗證！";
+          }
+          else if(code[1] == "2"){
+            document.getElementById("result").innerHTML = "某女通過驗證！";
+          }
+          else {
+            document.getElementById("result").innerHTML = "身分證字號輸入錯誤！請重新輸入！";
+          }
+        }
+      }
+
+      document.onkeyup = function(event) {
+        if (event.keyCode == 13) {
+          validate();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+        <!-- text -->
+      <input type="text" id="number">    
+      <!-- button標籤 -->
+      <input type="button" value="驗證" onclick="validate()">
+      <!-- result ID -->
+      <p id="result"></p>
+    </form>
+  </body>
+</html>

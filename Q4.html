@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <title>To-Do List</title>
+    <script>
+    "use strict";
+    
+    function createToDo() {
+
+      var todo = document.createElement("div");
+      console.log(todo);
+      var span = document.createElement("span");
+      console.log(span);
+      var input = document.getElementById("input").value;
+      console.log(input);
+
+      console.log(input)
+      if( input == "" ){
+        input = "廢文一篇";
+        console.log(input)
+      }
+      
+      span.innerHTML = input;
+      console.log(span.innerHTML)
+
+      todo.appendChild(span);
+      console.log(todo)
+
+      var replaceButton = document.createElement("button");
+      console.log(replaceButton)
+      replaceButton.onclick = function() {
+        var input = document.getElementById("input").value;
+        console.log(input)
+        console.log(input == "")
+        if( input == "" ) {
+          alert("你並沒有輸入任何文字");
+          return;
+        }
+        this.parentNode.firstChild.innerHTML = input;
+        console.log(this.parentNode.firstChild)
+        document.getElementById("input").value = "";
+        console.log(document.getElementById("input").value)
+      }
+
+      replaceButton.textContent = "R";
+      console.log(replaceButton.textContent)
+      todo.appendChild(replaceButton);
+      console.log(todo)
+
+      var removeButton = document.createElement("button");
+      console.log(removeButton)
+      removeButton.onclick = function() {
+        console.log(confirm)
+        if(confirm("是否確定完成？")){
+        //更改其字體的顏色
+        this.parentNode.firstChild.style.color = "red";
+        console.log(this.parentNode.firstChild)
+        //並且把「R」和「V」按鈕移除掉
+        this.parentNode.removeChild(replaceButton);
+        console.log(replaceButton)
+        this.parentNode.removeChild(removeButton);
+        console.log(removeButton)
+        }
+      }
+
+      removeButton.textContent = "V";
+      todo.appendChild(removeButton);
+
+      document.getElementById("todolist").appendChild(todo);
+      document.getElementById("input").value = "";
+    }
+
+    </script>
+  </head>
+  <body>
+    <div>
+      <input type="text" id="input">  
+      <button onclick="createToDo()"> + </button>
+      <div id="todolist"></div>
+    </div>
+  </body>
+</html>
